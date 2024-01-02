@@ -1,0 +1,37 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href = "{{url_for('static', filename='css/styles.css')}}">
+{% endblock %}
+
+{% block title %}My library{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+        <h1>All my books</h1>
+    <ul>
+        {%if all_books==[]:%}
+            <p>Your bucket is empty</p>
+        {%endif%}
+        <table class="table">
+
+              {%for item in all_books:%}
+             <tr>
+                 <td>
+                     <a href={{url_for('de', id=item.id)}}> Delete  </a>
+                    Book "{{item.title}}", by {{item.author}}. Rating: {{item.rating}}
+                    <a href={{url_for('edit', id=item.id)}}>  Edit rating</a>
+                     </td>
+                 {%endfor%}
+          </tr>
+            <br>
+            <p><a href={{url_for('add')}}>Add New Book</a></p>
+    </ul>
+    </div>
+  </div>
+</div>
+    
+{% endblock %}
