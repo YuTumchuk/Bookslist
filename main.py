@@ -27,7 +27,7 @@ class Bookform(FlaskForm):
     rating = SelectField('Book rating', validators=[DataRequired()], choices=["x", "xx","xxx","xxxx","xxxxx"])
     submit = SubmitField('Submit')
 
-@app.route('https://yutumchuk.github.io/Bookslist/')
+@app.route('https://yutumchuk.github.io/Bookslist')
 def home():
     all_books = db.session.query(My_book_collection).all()
     return render_template("index.html", all_books=all_books)
